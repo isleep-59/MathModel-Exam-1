@@ -130,6 +130,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Adj_Graph.h" />
     <ClInclude Include="head.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Train_Travel.h" />
