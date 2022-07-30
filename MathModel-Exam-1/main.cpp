@@ -1,5 +1,6 @@
-#include <bits/stdc++.h>
-using namespace std;
+#include "head.h"
+#include "Time.h"
+#include "Train_Travel.h"
 
 void solve() {
 
