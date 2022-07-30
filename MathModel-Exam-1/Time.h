@@ -10,6 +10,18 @@ public:
         this->minute = minute;
     }
 
+    void getTime() {
+        string tmp; cin >> tmp;
+        if (tmp.find(":")) {
+            hour = stoi(tmp.substr(0, 2));
+            minute = stoi(tmp.substr(3, 2));
+        }
+        else {
+            hour = 0;
+            minute = stoi(tmp);
+        }
+    }
+
     void setTime(int hour, int minute) {
         this->hour = hour;
         this->minute = minute;
