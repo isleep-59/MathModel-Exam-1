@@ -64,14 +64,10 @@ void init_train_travel_table() {
 	int mileage;	//Àï³Ì
 	while (cin >> train_name) {
 		cin >> station_name;
-		int hour, minute, days;
-		scanf("%d:%d", &hour, &minute);
-		leave_time.setTime(hour, minute);
-		scanf("%d:%d", &hour, &minute);
-		arrive_time.setTime(hour, minute);
+		leave_time.getTime();
+		arrive_time.getTime();
 		cin >> days;
-		scanf("%d:%d", &hour, &minute);
-		duration.setTime(hour, minute);
+		duration.getTime();
 		cin >> mileage;
 
 		Train_Travel_Node TTN_term(train_name, station_name, leave_time, arrive_time, stay_time, days, duration, mileage);
