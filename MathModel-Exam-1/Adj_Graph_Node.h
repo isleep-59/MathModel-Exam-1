@@ -17,4 +17,4 @@ public:
 		this->travel_index = travel_index;
 		this->train_name = train_name;
 	}
-};
+}

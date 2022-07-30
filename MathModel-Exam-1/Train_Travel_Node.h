@@ -22,4 +22,14 @@ public:
         this->duration = duration;
         this->mileage = mileage;
     }
+
+    void display() {
+        cout << train_name << ' ';
+        arrive_time.display(); cout << ' ';
+        leave_time.display(); cout << ' ';
+        stay_time.display(); cout << ' ';
+        cout << days << ' ';
+        duration.display(); cout << ' ';
+        cout << mileage << endl;
+    }
 };

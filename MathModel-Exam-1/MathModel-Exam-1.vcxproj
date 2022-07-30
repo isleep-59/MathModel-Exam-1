@@ -130,10 +130,13 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Adj_Graph.h" />
+    <ClInclude Include="Adj_Graph_Node.h" />
     <ClInclude Include="head.h" />
     <ClInclude Include="Time.h" />
-    <ClInclude Include="Train_Travel.h" />
+    <ClInclude Include="Train_Travel_Node.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="in.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
