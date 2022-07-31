@@ -7,12 +7,12 @@ public:
     string train_name;	//车名
     string station_name;	//站名
     Time leave_time, arrive_time;	//到达时间，离开时间
-    Time stay_time;	//停留时间
+    string stay_time;	//停留时间
     int days;   //天数
     Time duration;	//运行时间
     int mileage;	//里程
 
-    Train_Travel_Node(string train_name = "", string station_name = "", Time leave_time = NULL, Time arrive_time = NULL, Time stay_time = NULL, int days = 0, Time duration = NULL, int mileage = 0) {
+    Train_Travel_Node(string train_name = "", string station_name = "", Time leave_time = NULL, Time arrive_time = NULL, string stay_time = NULL, int days = 0, Time duration = NULL, int mileage = 0) {
         this->train_name = train_name;
         this->station_name = station_name;
         this->arrive_time = arrive_time;
@@ -25,9 +25,12 @@ public:
 
     void display() {
         cout << train_name << ' ';
-        arrive_time.display(); cout << ' ';
-        leave_time.display(); cout << ' ';
-        stay_time.display(); cout << ' ';
+        cout << station_name << ' ';
+        if (arrive_time.hour == 0 && arrive_time.minute == 0)cout << "始发站 ";
+        else arrive_time.display(); cout << ' ';
+        if (leave_time.hour == 24 && leave_time.minute == 0)cout << "终点站 ";
+        else leave_time.display(); cout << ' ';
+         cout << stay_time<<' ';
         cout << days << ' ';
         duration.display(); cout << ' ';
         cout << mileage << endl;
