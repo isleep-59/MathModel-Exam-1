@@ -2,6 +2,7 @@
 #include "Time.h"
 #include "Train_Travel_Node.h"
 #include "Adj_Graph_Node.h"
+#include "Ans_Travel_Node.h"
 #include <unordered_map>
 
 //车名为主键
@@ -10,10 +11,23 @@ unordered_map<string, vector<Train_Travel_Node> > Train_Travel_Table;
 unordered_map<string, vector<Adj_Graph_Node> > Adj_Graph;
 //dfs暂存数组
 vector<Train_Travel_Node> DFS_Travel;
-//问题一结果表
-vector<vector<Train_Travel_Node> > Ans_Travel_Table;
+//start_station -> target_staion的可行路径
+vector<Ans_Travel_Node> Ans_Travel_Table;
+//最终结果存储
+vector<int> Ans_Cnt;
 
-bool dfs(string now_station, string target_station, string train_name,int tt=0) {
+void greedy() {
+	sort(Ans_Travel_Table.begin(), Ans_Travel_Table.end());
+	Time now(-1, -1);
+	for (int i = 0; i < Ans_Travel_Table.size(); ++i) {
+		if (!(Ans_Travel_Table[i].start_time < now)) {
+			Ans_Cnt.push_back(i);
+			now = Ans_Travel_Table[i].end_time;
+		}
+	}
+}
+
+bool dfs(string now_station, string target_station, string train_name, int tt=0) {
 	if (now_station == target_station) {
 		DFS_Travel.push_back(Train_Travel_Table[train_name][tt]);
 		return true;
@@ -22,7 +36,7 @@ bool dfs(string now_station, string target_station, string train_name,int tt=0) 
 	for (auto it : Adj_Graph[now_station]) {
 		if (it.train_name == train_name) {
 			DFS_Travel.push_back(Train_Travel_Table[it.train_name][it.travel_index - 1]);
-			if (dfs(it.arrive_station, target_station, train_name,it.travel_index)) {
+			if (dfs(it.arrive_station, target_station, train_name, it.travel_index)) {
 				return true;
 			}
 			DFS_Travel.pop_back();
@@ -42,16 +56,23 @@ void solve() {
 
 
 		if (dfs(start_station, target_station, it.train_name)) {
-			Ans_Travel_Table.push_back(DFS_Travel);
+			Time start_time = DFS_Travel.front().leave_time;
+			Time end_time = DFS_Travel.back().arrive_time;
+			Ans_Travel_Node ATN_term(start_time, end_time, DFS_Travel);
+			Ans_Travel_Table.push_back(ATN_term);
 		}
 		DFS_Travel.clear();
 	}
+
+	greedy();
+
 	int num = 0;
 	freopen("out.txt", "w", stdout);
-	for (auto i : Ans_Travel_Table) {
-		cout<<++num<<endl;
+
+	for (auto i : Ans_Cnt) {
+		cout << ++num << endl;
 		int index = 1;
-		for (auto j : i) {
+		for (auto j : Ans_Travel_Table[i].info) {
 			cout << index++ << ' ';
 			j.display();
 		}
