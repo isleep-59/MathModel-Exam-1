@@ -17,4 +17,8 @@ public:
 		this->end_time = end_time;
 		this->info = info;
 	}
+
+	friend bool operator < (Ans_Travel_Node& a, Ans_Travel_Node& b) {
+		return a.end_time < b.end_time;
+	}
 };
