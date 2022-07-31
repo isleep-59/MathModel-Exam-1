@@ -1,5 +1,1 @@
-﻿  main.cpp
-C:\Users\Freedom\Desktop\MathModel-Exam-1-master\MathModel-Exam-1\main.cpp(50,2): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\Freedom\Desktop\MathModel-Exam-1-master\MathModel-Exam-1\main.cpp(101,2): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\Freedom\Desktop\MathModel-Exam-1-master\MathModel-Exam-1\main.cpp(106,2): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  MathModel-Exam-1.vcxproj -> C:\Users\Freedom\Desktop\MathModel-Exam-1-master\x64\Debug\MathModel-Exam-1.exe
+﻿D:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(440,5): error MSB8020: 无法找到 Visual Studio 2019 的生成工具(平台工具集 =“v142”)。若要使用 v142 生成工具进行生成，请安装 Visual Studio 2019 生成工具。或者，可以升级到当前 Visual Studio 工具，方式是通过选择“项目”菜单或右键单击该解决方案，然后选择“重定解决方案目标”。

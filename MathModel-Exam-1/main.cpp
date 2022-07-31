@@ -5,7 +5,7 @@
 #include <unordered_map>
 
 //车名为主键
-unordered_map<string, vector<Train_Travel_Node>> Train_Travel_Table;
+unordered_map<string, vector<Train_Travel_Node> > Train_Travel_Table;
 //出发站为主键
 unordered_map<string, vector<Adj_Graph_Node> > Adj_Graph;
 //dfs暂存数组
