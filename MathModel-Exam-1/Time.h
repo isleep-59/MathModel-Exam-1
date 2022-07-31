@@ -13,7 +13,7 @@ public:
     void getTime() {
         string tmp; cin >> tmp;
 
-        if (tmp.find(':')>0&&tmp.find(':')<10) {
+        if (tmp.find(':') > 0 && tmp.find(':') < 10) {
             hour = stoi(tmp.substr(0, 2));
             minute = stoi(tmp.substr(3, 2));
         }
@@ -42,7 +42,7 @@ public:
         printf("%02d:%02d ", hour, minute);
     }
 
-    Time operator-(Time & x) {
+    Time operator - (Time& x) {
         int ret_hour = 0, ret_minute = 0;
         ret_minute = minute - x.minute;
         ret_hour = hour - x.hour;
@@ -57,7 +57,7 @@ public:
         return Time(ret_hour, ret_minute);
     }
 
-    Time operator+(Time& x) {
+    Time operator + (Time& x) {
         int ret_hour = 0, ret_minute = 0;
         ret_minute = minute + x.minute;
         ret_hour = hour + x.hour;
@@ -67,5 +67,12 @@ public:
         }
 
         return Time(ret_hour, ret_minute);
+    }
+
+    friend bool operator < (Time& a, Time& b) {
+        int at = a.hour * 60 + a.minute;
+        int bt = b.hour * 60 + b.minute;
+
+        return at < bt;
     }
 };
