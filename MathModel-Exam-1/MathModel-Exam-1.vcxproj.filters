@@ -32,9 +32,15 @@
     <ClInclude Include="Adj_Graph_Node.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Ans_Travel_Node.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="in.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="out.txt">
       <Filter>资源文件</Filter>
     </Text>
   </ItemGroup>
