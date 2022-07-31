@@ -2,9 +2,10 @@
 #include "Time.h"
 #include "Train_Travel_Node.h"
 #include "Adj_Graph_Node.h"
+#include <unordered_map>
 
 //车名为主键
-unordered_map<string, vector<Train_Travel_Node> > Train_Travel_Table;
+unordered_map<string, vector<Train_Travel_Node>> Train_Travel_Table;
 //出发站为主键
 unordered_map<string, vector<Adj_Graph_Node> > Adj_Graph;
 //dfs暂存数组
@@ -12,15 +13,16 @@ vector<Train_Travel_Node> DFS_Travel;
 //问题一结果表
 vector<vector<Train_Travel_Node> > Ans_Travel_Table;
 
-bool dfs(string now_station, string target_station, string train_name) {
+bool dfs(string now_station, string target_station, string train_name,int tt=0) {
 	if (now_station == target_station) {
+		DFS_Travel.push_back(Train_Travel_Table[train_name][tt]);
 		return true;
 	}
 
 	for (auto it : Adj_Graph[now_station]) {
 		if (it.train_name == train_name) {
 			DFS_Travel.push_back(Train_Travel_Table[it.train_name][it.travel_index - 1]);
-			if (dfs(it.arrive_station, target_station, train_name)) {
+			if (dfs(it.arrive_station, target_station, train_name,it.travel_index)) {
 				return true;
 			}
 			DFS_Travel.pop_back();
@@ -37,14 +39,17 @@ void solve() {
 	cin >> target_station;
 
 	for (auto it : Adj_Graph[start_station]) {
-		DFS_Travel.push_back(Train_Travel_Table[it.train_name][it.travel_index - 1]);
+
+
 		if (dfs(start_station, target_station, it.train_name)) {
 			Ans_Travel_Table.push_back(DFS_Travel);
 		}
 		DFS_Travel.clear();
 	}
-
+	int num = 0;
+	freopen("out.txt", "w", stdout);
 	for (auto i : Ans_Travel_Table) {
+		cout<<++num<<endl;
 		int index = 1;
 		for (auto j : i) {
 			cout << index++ << ' ';
@@ -58,14 +63,16 @@ void init_train_travel_table() {
 	string train_name;	//车名
 	string station_name;	//站名
 	Time leave_time, arrive_time;	//到达时间，离开时间
-	Time stay_time;	//停留时间
+	string stay_time;	//停留时间
 	int days;   //天数
 	Time duration;	//运行时间
 	int mileage;	//里程
 	while (cin >> train_name) {
+
 		cin >> station_name;
-		leave_time.getTime();
 		arrive_time.getTime();
+		leave_time.getTime();
+		cin >> stay_time;
 		cin >> days;
 		duration.getTime();
 		cin >> mileage;
@@ -90,7 +97,9 @@ void init_Adj_Graph() {
 }
 
 signed main() {
+
 	freopen("in.txt", "r", stdin);
+
 	init_train_travel_table();
 	init_Adj_Graph();
 	cin.clear();

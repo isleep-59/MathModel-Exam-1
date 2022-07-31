@@ -12,13 +12,24 @@ public:
 
     void getTime() {
         string tmp; cin >> tmp;
-        if (tmp.find(":")) {
+
+        if (tmp.find(':')>0&&tmp.find(':')<10) {
             hour = stoi(tmp.substr(0, 2));
             minute = stoi(tmp.substr(3, 2));
         }
         else {
-            hour = 0;
-            minute = stoi(tmp);
+            if (tmp == "Ê¼·¢Õ¾") {
+                hour = 0;
+                minute = 0;
+            }
+            else if (tmp == "ÖÕµãÕ¾") {
+                hour = 24;
+                minute = 0;
+            }
+            else {
+                hour = 0;
+                minute = stoi(tmp);
+            }
         }
     }
 
@@ -28,7 +39,7 @@ public:
     }
 
     void display() {
-        cout << hour << " : " << minute << endl;
+        printf("%02d:%02d ", hour, minute);
     }
 
     Time operator-(Time & x) {
